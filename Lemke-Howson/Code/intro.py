@@ -10,8 +10,7 @@ class Intro(Scene):
         # nash image
         image1 = ImageMobject("../Images-Icons/nash.jpg").scale(0.4) 
         caption = FixedText(
-            "John Nash(1928-2015)", 
-            font="Arial", 
+            "John Nash(1928-2015)",
             slant=ITALIC, 
             font_size=36, 
             color=WHITE
@@ -32,8 +31,7 @@ class Intro(Scene):
         # movie image
         image2=ImageMobject("../Images-Icons/a beautiful mind.jpg").scale(1)
         caption2 = FixedText(
-            "A Beautiful Mind(2001)", 
-            font="Arial", 
+            "A Beautiful Mind(2001)",
             slant=ITALIC, 
             font_size=36, 
             color=WHITE
@@ -130,7 +128,7 @@ class Intro(Scene):
             MathTex("123", font_size=14).next_to(v_bot_right, DOWN, buff=0.08),
         )
 
-        sub_left = FixedText("Lemke-Howson Polytope", font_size=15, font="Arial", slant=ITALIC, color=BLUE_C).move_to(pos_left + DOWN * 3)
+        sub_left = FixedText("Lemke-Howson Polytope", font_size=15, slant=ITALIC, color=BLUE_C).move_to(pos_left + DOWN * 3)
         
         col1_group = VGroup(
             g1_title, axis_x1, axis_x2, axis_x3, lbl_x1, lbl_x2, lbl_x3, 
@@ -174,16 +172,17 @@ class Intro(Scene):
                 Polygon(p1, p2, p3, stroke_color=GREEN_D, stroke_width=1.0, fill_color=GREEN_E, fill_opacity=0.08)
             )
 
-        sub_center = FixedText("Spherical Mesh", font_size=15, font="Arial", slant=ITALIC, color=GREEN_C).move_to(pos_center + DOWN * 3)
+        sub_center = FixedText("Spherical Mesh", font_size=15, slant=ITALIC, color=GREEN_C).move_to(pos_center + DOWN * 3)
         col2_group = VGroup(g2_title, mesh_outer_ring, mesh_triangles, sub_center)
+        mesh_triangles.set_z_index(1)
 
         # Combinatorics Tree
-        # g3_title = Text("Combinatorics", font_size=20, color=PURPLE_A).move_to(pos_right + UP * 3.3)
-        g3_title = FixedText("Combinatorics", font_size=20, color=PURPLE_A).move_to(pos_right + UP * 3.3)
+        g3_title = FixedText("Combinatorics", font_size=20, color=PURPLE_A).move_to(pos_right + UP * 4.1)
         
         r_box = Rectangle(width=0.6, height=0.3, color=PURPLE_B).move_to(pos_right + UP * 2.0)
         r_txt = FixedText("0", font_size=8).move_to(r_box.get_center())
         tree_elements = VGroup(r_box, r_txt)
+        r_box.set_z_index(1)
         
         l2_offsets = [-0.9, 0, 0.9]
         l2_nodes = []
@@ -191,6 +190,7 @@ class Intro(Scene):
             c_box = Rectangle(width=0.5, height=0.25, color=PURPLE_C).move_to(pos_right + RIGHT * x_off + UP * 0.8)
             c_txt = FixedText(f"{idx+1}", font_size=9).move_to(c_box.get_center())
             edge = Line(r_box.get_bottom(), c_box.get_top(), color=PURPLE_E, stroke_width=2)
+            c_box.set_z_index(1)
             tree_elements.add(c_box, c_txt, edge)
             l2_nodes.append(c_box)
             
@@ -201,11 +201,13 @@ class Intro(Scene):
                 l_box = Rectangle(width=0.3, height=0.2, color=PURPLE_D).move_to(pos_right + RIGHT * x_off + DOWN * 0.4)
                 l_txt = FixedText(f"{leaf_counter}", font_size=8).move_to(l_box.get_center())
                 edge = Line(branch.get_bottom(), l_box.get_top(), color=PURPLE_E, stroke_width=1.2)
+                l_box.set_z_index(1)
                 tree_elements.add(l_box, l_txt, edge)
                 leaf_counter += 1
 
-        sub_right = FixedText("Permutation Tree", font_size=15, font="Arial", slant=ITALIC, color=PURPLE_C).move_to(pos_right + DOWN * 3)
+        sub_right = FixedText("Permutation Tree", font_size=15, slant=ITALIC, color=PURPLE_C).move_to(pos_right + DOWN * 2.2)
         col3_group = VGroup(g3_title, tree_elements, sub_right)
+        col3_group.shift(-UP * 0.8)
 
         # animation reveal
         self.play(

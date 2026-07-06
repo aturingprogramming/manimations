@@ -22,6 +22,10 @@ from manim.mobject.types.vectorized_mobject import VGroup, VMobject
 from manim.typing import Point3D
 from manim.utils.color import ManimColor, ParsableManimColor, color_gradient
 
+
+DEFAULT_TEXT_FONT = "Calibri"
+
+
 class FixedText(Text):
 	def __init__(
 		self,
@@ -50,6 +54,8 @@ class FixedText(Text):
 		use_svg_cache: bool = False,
 		**kwargs: Any,
 	):
+		if not font:
+			font = DEFAULT_TEXT_FONT
 		super().__init__(
 			text,
 			fill_opacity,
