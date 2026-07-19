@@ -939,5 +939,6 @@ class BimatrixGames(Scene):
         self.play(
             FadeOut(arrow),
             FadeOut(label),
-            run_time=0.5
+            run_time=0.5,
+            rate_func=smooth
         )
